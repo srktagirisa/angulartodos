@@ -1,0 +1,18 @@
+<h1>TODO List</h1>
+<p style="border: 1px;">A place to store your todos</p>
+<p>Filter your Todos</p>
+<ol>
+<div *ngFor="let todo of todos; index as i">
+        <li>
+            <div *ngIf="!todo.completed">
+                <button (click)="completeTask(i)">Complete</button>  &nbsp;<span>{{ todo.task }}</span>
+            </div>
+            <span *ngIf="todo.completed" style="text-decoration: line-through;">{{ todo.task }}</span>
+        </li>
+</div>
+</ol>
+<form #addForm="ngForm" (ngSubmit)="addTask(addForm)">
+    <input type="text" name="task" [(ngModel)]="formTodo.task" /><br />
+    <input type="hidden" name="completed" [(ngModel)]="formTodo.completed" /><br />
+    <button type="submit">Add</button>
+</form>
